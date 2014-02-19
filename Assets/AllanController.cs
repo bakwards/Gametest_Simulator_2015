@@ -11,4 +11,7 @@ public class AllanController : MonoBehaviour {
 		rigidbody.MovePosition(transform.position + newDirection * walkSpeed);
 		transform.LookAt(transform.position + newDirection);
 	}
+	void OnMouseDown() {
+		Debug.Log ("hey");
+		}
 }
