@@ -103,8 +103,10 @@ public class NavAgentControl : MonoBehaviour {
 
 	public bool Follow(){ // new function
 		follow = !follow;
-		if(!follow){
-			SetTarget(workArea);
+		if (!follow) {
+			SetTarget (workArea);
+		} else {
+			isWorking = false;
 		}
 		return follow;
 	}
