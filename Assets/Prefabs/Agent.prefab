@@ -14,8 +14,11 @@ GameObject:
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
+<<<<<<< HEAD
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400004}
+=======
+>>>>>>> 8b157617dee8752e9d7c87e114a28a159b6f73a8
   m_Layer: 0
   m_Name: Agent
   m_TagString: ReviewAgent
@@ -91,18 +94,23 @@ MonoBehaviour:
   targetPoint: {fileID: 0}
   reviewSize: 1
   reviewProgress: 0
-  peeThreshold: 80.5
+  peeThreshold: 127
   peeNeed: 0
   isPeeing: 0
   isSmoker: 1
+<<<<<<< HEAD
   isWorking: 0
   isDone: 0
   smokingTreshold: 50
+=======
+  smokingTreshold: 55
+>>>>>>> 8b157617dee8752e9d7c87e114a28a159b6f73a8
   smokingNeed: 0
   isSmoking: 0
   peeArea: {fileID: 0}
   smokingArea: {fileID: 0}
   workArea: {fileID: 0}
+<<<<<<< HEAD
   kontoret: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -126,6 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 999b5d0473d2fdd4281dd0e47264b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+  follow: 0
+>>>>>>> 8b157617dee8752e9d7c87e114a28a159b6f73a8
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -151,7 +162,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

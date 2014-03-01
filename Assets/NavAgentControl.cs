@@ -31,14 +31,19 @@ public class NavAgentControl : MonoBehaviour {
 	public GameObject workArea;
 	public GameObject kontoret;
 
-	private bool follow = false; //new stuff
+	public bool follow = false; //new stuff
 
 	void Start () {
 		agent = gameObject.GetComponent<NavMeshAgent>();
 		agent.SetDestination(workArea.transform.position);
+		targetPoint = workArea;
 	}
 	
 	void Update () {
+<<<<<<< HEAD
+		CheckDestination();
+		if(isPeeing ){
+=======
 		if(follow){ //new stuff
 			agent.SetDestination(targetPoint.transform.position);
 		}
@@ -59,11 +64,11 @@ public class NavAgentControl : MonoBehaviour {
 			}
 		}
 		if(isPeeing){
+>>>>>>> b9582692cc233990a7b49bbe27249116215abaaa
 			peeNeed -= Time.deltaTime * 16;
 			if(peeNeed < 0){
 				isPeeing = false;
 				peeNeed = 0;
-				SetTarget(workArea);
 				if(smokingNeed < smokingTreshold){
 					SetTarget(workArea);
 				} else {
@@ -91,6 +96,30 @@ public class NavAgentControl : MonoBehaviour {
 			SetTarget(kontoret);
 			workArea = kontoret;
 		}
+<<<<<<< HEAD
+	}
+
+	void FixedUpdate () {		
+		agent.SetDestination(targetPoint.transform.position);
+	}
+
+	private void CheckDestination(){
+		if(!isPeeing && peeNeed < peeThreshold){
+			peeNeed += Time.deltaTime;
+		}
+		if(peeNeed >= peeThreshold){
+			follow = false; // new - temp?
+			SetTarget(peeArea);
+		}
+		if(!isSmoking && isSmoker && smokingNeed < smokingTreshold){
+			smokingNeed += Time.deltaTime;
+		}
+		if(smokingNeed >= smokingTreshold){
+			follow = false; // new - temp?
+			SetTarget(smokingArea);
+		}
+=======
+>>>>>>> b9582692cc233990a7b49bbe27249116215abaaa
 	}
 	
 	public void SetTarget ( GameObject newTarget ) {
@@ -98,12 +127,27 @@ public class NavAgentControl : MonoBehaviour {
 		agent.SetDestination(targetPoint.transform.position);
 	}
 
-	public void Follow(){ // new function
-		follow = true;
+	public bool Follow(){ // new function
+		follow = !follow;
+		if(!follow){
+			SetTarget(workArea);
+		}
+		return follow;
 	}
 	
 	void OnTriggerEnter ( Collider other ){
 		Debug.Log("Trigger entered by " + gameObject.name);
+<<<<<<< HEAD
+<<<<<<< HEAD
+		if(other.gameObject.tag == "SmokingArea" && !follow){
+			isSmoking = true;
+		} else if (other.gameObject.tag == "PeeArea" && !follow){
+			isPeeing = true;
+		} else if (other.gameObject.tag == "WorkArea" && !follow){
+			
+=======
+=======
+>>>>>>> b9582692cc233990a7b49bbe27249116215abaaa
 		if (other.gameObject.tag == "SmokingArea") {
 				isSmoking = true;
 		} else if (other.gameObject.tag == "PeeArea") {
@@ -112,6 +156,10 @@ public class NavAgentControl : MonoBehaviour {
 				isWorking = true;
 		} else if (other.gameObject.tag == "Kontoret") {
 				isDone = true;
+<<<<<<< HEAD
+>>>>>>> b9582692cc233990a7b49bbe27249116215abaaa
+=======
+>>>>>>> b9582692cc233990a7b49bbe27249116215abaaa
 		}
 	}
 }
