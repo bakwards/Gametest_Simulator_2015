@@ -96,6 +96,7 @@ public class NavAgentControl : MonoBehaviour {
 			SetTarget(kontoret);
 			workArea = kontoret;
 		}
+<<<<<<< HEAD
 	}
 
 	void FixedUpdate () {		
@@ -117,6 +118,8 @@ public class NavAgentControl : MonoBehaviour {
 			follow = false; // new - temp?
 			SetTarget(smokingArea);
 		}
+=======
+>>>>>>> b9582692cc233990a7b49bbe27249116215abaaa
 	}
 	
 	public void SetTarget ( GameObject newTarget ) {
@@ -135,6 +138,7 @@ public class NavAgentControl : MonoBehaviour {
 	void OnTriggerEnter ( Collider other ){
 		Debug.Log("Trigger entered by " + gameObject.name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if(other.gameObject.tag == "SmokingArea" && !follow){
 			isSmoking = true;
 		} else if (other.gameObject.tag == "PeeArea" && !follow){
@@ -142,6 +146,8 @@ public class NavAgentControl : MonoBehaviour {
 		} else if (other.gameObject.tag == "WorkArea" && !follow){
 			
 =======
+=======
+>>>>>>> b9582692cc233990a7b49bbe27249116215abaaa
 		if (other.gameObject.tag == "SmokingArea") {
 				isSmoking = true;
 		} else if (other.gameObject.tag == "PeeArea") {
@@ -150,6 +156,9 @@ public class NavAgentControl : MonoBehaviour {
 				isWorking = true;
 		} else if (other.gameObject.tag == "Kontoret") {
 				isDone = true;
+<<<<<<< HEAD
+>>>>>>> b9582692cc233990a7b49bbe27249116215abaaa
+=======
 >>>>>>> b9582692cc233990a7b49bbe27249116215abaaa
 		}
 	}
