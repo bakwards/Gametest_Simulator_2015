@@ -13,15 +13,11 @@ public class PlayingState : State
 
     public override void EnterState()
     {
-        Debug.Log("Enter PlayingState");
+		Debug.Log("IT works!");
     }
 
     public override void StateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AudioController.Instance.PlaySound();
-        }
     }
     public override void ExitState()
     {

@@ -3,23 +3,15 @@ using System.Collections;
 
 public class StateGameController : MonoBehaviour {
 
+	private StateManager stateManager;
+
     void Start()
     {
-        StateManager.Instance.EnterTheFirstState(new PlayingState());
+		stateManager = GetComponent<StateManager>();
+		stateManager.EnterTheFirstState(new PlayingState());
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.N))
-        {
-            if (StateManager.Instance.ActiveState.StateName.Equals(new PlayingState().StateName))
-            {
-                StateManager.Instance.SwitchState(new LossingState());
-            }
-            else
-            {
-                StateManager.Instance.SwitchState(new PlayingState());
-            }
-        }
     }
 }
