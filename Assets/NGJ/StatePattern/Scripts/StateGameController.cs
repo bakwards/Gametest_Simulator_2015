@@ -8,10 +8,14 @@ public class StateGameController : MonoBehaviour {
     void Start()
     {
 		stateManager = GetComponent<StateManager>();
-		stateManager.EnterTheFirstState(new PlayingState());
+		stateManager.EnterTheFirstState(new LossingState());
     }
 
     void Update()
     {
+		if (Input.GetKeyDown(KeyCode.Space)){
+			stateManager.SwitchState(new LossingState());
+		}
+
     }
 }

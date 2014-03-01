@@ -14,6 +14,10 @@ public class NavAgentControl : MonoBehaviour {
 	public bool isPeeing = false;
 	
 	public bool isSmoker = true;
+
+	public bool isWorking = false;
+
+	public bool isDone = false;
 	
 	public float smokingTreshold = 100;
 	public float smokingNeed = 0;
@@ -25,6 +29,7 @@ public class NavAgentControl : MonoBehaviour {
 	public GameObject peeArea;
 	public GameObject smokingArea;
 	public GameObject workArea;
+	public GameObject kontoret;
 
 	private bool follow = false; //new stuff
 
@@ -41,6 +46,7 @@ public class NavAgentControl : MonoBehaviour {
 			peeNeed += Time.deltaTime;
 			if(peeNeed >= peeThreshold){
 				follow = false; // new - temp?
+				isWorking = false;
 				SetTarget(peeArea);
 			}
 		}
@@ -48,6 +54,7 @@ public class NavAgentControl : MonoBehaviour {
 			smokingNeed += Time.deltaTime;
 			if(smokingNeed >= smokingTreshold){
 				follow = false; // new - temp?
+				isWorking = false;
 				SetTarget(smokingArea);
 			}
 		}
@@ -76,6 +83,14 @@ public class NavAgentControl : MonoBehaviour {
 				}
 			}
 		}
+		if (isWorking){
+			reviewProgress += Time.deltaTime;
+		}
+		if (reviewProgress >= reviewSize && isWorking) {
+			isWorking = false;
+			SetTarget(kontoret);
+			workArea = kontoret;
+		}
 	}
 	
 	public void SetTarget ( GameObject newTarget ) {
@@ -89,12 +104,14 @@ public class NavAgentControl : MonoBehaviour {
 	
 	void OnTriggerEnter ( Collider other ){
 		Debug.Log("Trigger entered by " + gameObject.name);
-		if(other.gameObject.tag == "SmokingArea"){
-			isSmoking = true;
-		} else if (other.gameObject.tag == "PeeArea"){
-			isPeeing = true;
-		} else if (other.gameObject.tag == "WorkArea"){
-			
+		if (other.gameObject.tag == "SmokingArea") {
+				isSmoking = true;
+		} else if (other.gameObject.tag == "PeeArea") {
+				isPeeing = true;
+		} else if (other.gameObject.tag == "WorkArea") {
+				isWorking = true;
+		} else if (other.gameObject.tag == "Kontoret") {
+				isDone = true;
 		}
 	}
 }
