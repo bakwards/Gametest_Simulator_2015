@@ -14,8 +14,8 @@ GameObject:
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
-  - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Agent
   m_TagString: ReviewAgent
@@ -89,21 +89,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPoint: {fileID: 0}
-  reviewSize: 1000
+  reviewSize: 1
   reviewProgress: 0
   peeThreshold: 80.5
   peeNeed: 0
   isPeeing: 0
   isSmoker: 1
+  isWorking: 0
+  isDone: 0
   smokingTreshold: 50
   smokingNeed: 0
   isSmoking: 0
   peeArea: {fileID: 0}
   smokingArea: {fileID: 0}
   workArea: {fileID: 0}
+  kontoret: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
@@ -114,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &11400004
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
