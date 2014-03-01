@@ -20,7 +20,6 @@ public class AllanCalls : MonoBehaviour {
 	}
 
 	void AllanCall(){
-		NavAgentControl callTarget;
 		float minDistance = maxDistance;
 		GameObject callObject = null;
 		foreach(GameObject fooObj in GameObject.FindGameObjectsWithTag("ReviewAgent")){
@@ -33,8 +32,9 @@ public class AllanCalls : MonoBehaviour {
 			}
 		}
 		if(callObject != null){
-			callObject.GetComponent<NavAgentControl>().SetTarget(this.gameObject);
-			callObject.GetComponent<NavAgentControl>().Follow();
+			if(callObject.GetComponent<NavAgentControl>().Follow()){
+				callObject.GetComponent<NavAgentControl>().SetTarget(this.gameObject);
+			}
 		}
 	}
 }

@@ -14,6 +14,7 @@ public class LossingState : State {
     public override void EnterState()
     {
         Debug.Log("Enter LossingState");
+
     }
 
     public override void StateUpdate()

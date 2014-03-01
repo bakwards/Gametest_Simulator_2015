@@ -13,7 +13,6 @@ public class PlayingState : State
 
     public override void EnterState()
     {
-		Debug.Log("IT works!");
     }
 
     public override void StateUpdate()

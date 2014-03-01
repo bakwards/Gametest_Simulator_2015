@@ -26,37 +26,21 @@ public class NavAgentControl : MonoBehaviour {
 	public GameObject smokingArea;
 	public GameObject workArea;
 
-	private bool follow = false; //new stuff
+	public bool follow = false; //new stuff
 
 	void Start () {
 		agent = gameObject.GetComponent<NavMeshAgent>();
 		agent.SetDestination(workArea.transform.position);
+		targetPoint = workArea;
 	}
 	
 	void Update () {
-		if(follow){ //new stuff
-			agent.SetDestination(targetPoint.transform.position);
-		}
-		if(!isPeeing && peeNeed < peeThreshold){
-			peeNeed += Time.deltaTime;
-			if(peeNeed >= peeThreshold){
-				follow = false; // new - temp?
-				SetTarget(peeArea);
-			}
-		}
-		if(!isSmoking && isSmoker && smokingNeed < smokingTreshold){
-			smokingNeed += Time.deltaTime;
-			if(smokingNeed >= smokingTreshold){
-				follow = false; // new - temp?
-				SetTarget(smokingArea);
-			}
-		}
-		if(isPeeing){
+		CheckDestination();
+		if(isPeeing ){
 			peeNeed -= Time.deltaTime * 16;
 			if(peeNeed < 0){
 				isPeeing = false;
 				peeNeed = 0;
-				SetTarget(workArea);
 				if(smokingNeed < smokingTreshold){
 					SetTarget(workArea);
 				} else {
@@ -77,23 +61,48 @@ public class NavAgentControl : MonoBehaviour {
 			}
 		}
 	}
+
+	void FixedUpdate () {		
+		agent.SetDestination(targetPoint.transform.position);
+	}
+
+	private void CheckDestination(){
+		if(!isPeeing && peeNeed < peeThreshold){
+			peeNeed += Time.deltaTime;
+		}
+		if(peeNeed >= peeThreshold){
+			follow = false; // new - temp?
+			SetTarget(peeArea);
+		}
+		if(!isSmoking && isSmoker && smokingNeed < smokingTreshold){
+			smokingNeed += Time.deltaTime;
+		}
+		if(smokingNeed >= smokingTreshold){
+			follow = false; // new - temp?
+			SetTarget(smokingArea);
+		}
+	}
 	
 	public void SetTarget ( GameObject newTarget ) {
 		targetPoint = newTarget;
 		agent.SetDestination(targetPoint.transform.position);
 	}
 
-	public void Follow(){ // new function
-		follow = true;
+	public bool Follow(){ // new function
+		follow = !follow;
+		if(!follow){
+			SetTarget(workArea);
+		}
+		return follow;
 	}
 	
 	void OnTriggerEnter ( Collider other ){
 		Debug.Log("Trigger entered by " + gameObject.name);
-		if(other.gameObject.tag == "SmokingArea"){
+		if(other.gameObject.tag == "SmokingArea" && !follow){
 			isSmoking = true;
-		} else if (other.gameObject.tag == "PeeArea"){
+		} else if (other.gameObject.tag == "PeeArea" && !follow){
 			isPeeing = true;
-		} else if (other.gameObject.tag == "WorkArea"){
+		} else if (other.gameObject.tag == "WorkArea" && !follow){
 			
 		}
 	}

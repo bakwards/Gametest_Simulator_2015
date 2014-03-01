@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StateGameController : MonoBehaviour {
+public class AIStateController : MonoBehaviour {
 
 	private StateManager stateManager;
+
 
     void Start()
     {
@@ -13,5 +14,6 @@ public class StateGameController : MonoBehaviour {
 
     void Update()
     {
+
     }
 }
